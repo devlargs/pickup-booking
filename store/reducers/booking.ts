@@ -105,7 +105,6 @@ const bookingSlice = createSlice({
       state.loading = true;
     },
     [loadBooking.fulfilled as any]: (state, action) => {
-      console.log(action);
       state.loading = false;
       state.data = action.payload.data;
     },

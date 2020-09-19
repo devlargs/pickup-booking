@@ -19,7 +19,7 @@ describe("Booking Page tests", () => {
     cy.get(".parsley-error-list").should("have.length", 7);
   });
 
-  it("should fill up the form and create a booking and immediately be added at deliveries table", () => {
+  it("should fill up the form, create a booking and immediately be added at deliveries table", () => {
     cy.contains(/deliveries/i).click();
     cy.get("#deliveries-table")
       .find("tr")
