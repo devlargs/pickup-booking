@@ -7,11 +7,11 @@ import {
   updateBooking,
 } from "store/reducers/booking";
 import { useEffect } from "react";
-import swal from "sweetalert";
+import swal from "@sweetalert/with-react";
 
 const Deliveries = () => {
   const dispatch = useDispatch();
-  const { data, loading } = useSelector(selectBookings);
+  const { data } = useSelector(selectBookings);
 
   useEffect(() => {
     dispatch(loadBooking());
@@ -46,9 +46,7 @@ const Deliveries = () => {
   return (
     <Container>
       <Header title="Deliveries" />
-      {/* {loading ? (
-        <>loading table..</>
-      ) : ( */}
+
       <table className="table table-hover">
         <thead>
           <tr>
@@ -85,7 +83,42 @@ const Deliveries = () => {
               </td>
               <td>{q.paymentMode}</td>
               <td>
-                <button type="button" className="btn btn-info btn-xs">
+                <button
+                  type="button"
+                  className="btn btn-info btn-xs"
+                  onClick={() =>
+                    swal({
+                      content: (
+                        <div style={{ textAlign: "left" }}>
+                          <div>
+                            <b>Shipper's Name</b>: {q.shippersName}
+                          </div>
+                          <div>Shipper's Address: {q.shippersAddress}</div>
+                          <div>
+                            Shipper's Email Address: {q.shippersEmailAddress}
+                          </div>
+                          <div>
+                            Shippers Contact Number: {q.shippersContactNumber}
+                          </div>
+                          <hr />
+                          <div>
+                            <b>Receiver's Name</b>: {q.receiversName}
+                          </div>
+                          <div>
+                            Receiver's Contact Number:{" "}
+                            {q.receiversContactNumber}
+                          </div>
+                          <div>Receiver's Address: {q.receiversAddress}</div>
+                          <hr />
+                          <div>Shipment Type: {q.shipmentType}</div>
+                          <div>Mode of Service: {q.modeOfService}</div>
+                          <div>Payment Mode: {q.paymentMode}</div>
+                        </div>
+                      ),
+                      buttons: {},
+                    })
+                  }
+                >
                   View
                 </button>
                 {q.status !== "CANCELLED" && q.status !== "DELIVERED" && (
@@ -157,7 +190,6 @@ const Deliveries = () => {
           ))}
         </tbody>
       </table>
-      {/* )} */}
     </Container>
   );
 };
