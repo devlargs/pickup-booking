@@ -60,7 +60,7 @@ const Deliveries = () => {
           </tr>
         </thead>
         <tbody id="deliveries-table">
-          {data.map((q, i) => (
+          {data.map((q: any, i: number) => (
             <tr key={i}>
               <td>{q.shippersName}</td>
               <td>{q.receiversName}</td>

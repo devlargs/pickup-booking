@@ -1,4 +1,10 @@
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBars,
+  faPencilAlt,
+  faTruck,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => (
   <div className="mainbar">
@@ -9,14 +15,16 @@ const Navbar = () => (
         data-toggle="collapse"
         data-target=".mainbar-collapse"
       >
-        <i className="fa fa-bars"></i>
+        <FontAwesomeIcon icon={faBars} style={{ color: "white" }} />
       </button>
       <div className="mainbar-collapse collapse">
         <ul className="nav navbar-nav mainbar-nav">
           <li>
             <Link href="/">
               <a>
-                <i className="fa fa-pencil"></i>
+                <i>
+                  <FontAwesomeIcon icon={faPencilAlt} />
+                </i>
                 Book a Pick Up
               </a>
             </Link>
@@ -25,7 +33,9 @@ const Navbar = () => (
             <Link href="/deliveries">
               <a>
                 <>
-                  <i className="fa fa-truck"></i>
+                  <i>
+                    <FontAwesomeIcon icon={faTruck} />
+                  </i>
                   Deliveries
                 </>
               </a>

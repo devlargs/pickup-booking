@@ -13,7 +13,6 @@ const Meta = () => (
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Oswald:400,300,700"
     />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
     <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/target-admin.css" />

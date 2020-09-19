@@ -1,5 +1,6 @@
-import Header from "components/Header";
 import Container from "components/Container";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Error = () => (
   <Container>
@@ -17,15 +18,21 @@ const Error = () => (
 
             <ul className="icons-list">
               <li>
-                <i className="icon-li fa fa-check-square-o"></i>
+                <i className="icon-li">
+                  <FontAwesomeIcon icon={faCheckCircle} />
+                </i>
                 you can try refreshing the page, the problem may be temporary
               </li>
               <li>
-                <i className="icon-li fa fa-check-square-o"></i>
+                <i className="icon-li">
+                  <FontAwesomeIcon icon={faCheckCircle} />
+                </i>
                 if you entered the url by hand, double check that it is correct
               </li>
               <li>
-                <i className="icon-li fa fa-check-square-o"></i>
+                <i className="icon-li">
+                  <FontAwesomeIcon icon={faCheckCircle} />
+                </i>
                 Nothing! we've been notified of the problem and will do our best
                 to make sure it doesn't happen again!
               </li>

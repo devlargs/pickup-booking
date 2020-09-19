@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form";
 import Header from "components/Header";
 import Container from "components/Container";
 import Input from "components/Input";
-import Footer from "components/Footer";
 import Portlet from "components/Portlet";
 import enums from "constants/enums";
 import { addBooking, selectBookings } from "store/reducers/booking";
 import { useDispatch, useSelector } from "react-redux";
+import { faCogs, faTruck, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -43,7 +43,6 @@ const App = () => {
 
   const submit = (e: any) => {
     setClicked(true);
-    console.log(validateForm(), "wtf");
     if (validateForm()) {
       dispatch(addBooking(getValues()));
       reset();
@@ -59,7 +58,7 @@ const App = () => {
         <form onSubmit={handleSubmit(submit)}>
           <div className="row">
             <div className="col-xs-6">
-              <Portlet title="Shippers Information" icon="truck">
+              <Portlet title="Shippers Information" icon={faTruck}>
                 <Input
                   name="shippersName"
                   label="Full Name"
@@ -90,7 +89,7 @@ const App = () => {
             </div>
 
             <div className="col-xs-6">
-              <Portlet title="Receivers Information" icon="user">
+              <Portlet title="Receivers Information" icon={faUser}>
                 <Input
                   name="receiversName"
                   label="Full Name"
@@ -115,7 +114,7 @@ const App = () => {
             </div>
           </div>
 
-          <Portlet title="Miscellaneous" icon="gear">
+          <Portlet title="Miscellaneous" icon={faCogs}>
             <div className="row">
               <div className="col-lg-4">
                 <div className="form-group">
