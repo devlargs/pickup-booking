@@ -1,5 +1,4 @@
 import "styles/global.css";
-import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import type { AppProps } from "next/app";
