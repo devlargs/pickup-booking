@@ -14,7 +14,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const books = await BookingSchema.find();
       res.status(200).send({ data: books });
     } catch (error) {
-      console.log(error);
       res.send({ error });
     }
   }

@@ -59,9 +59,9 @@ const Deliveries = () => {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
-          {data.map((q) => (
-            <tr>
+        <tbody id="deliveries-table">
+          {data.map((q, i) => (
+            <tr key={i}>
               <td>{q.shippersName}</td>
               <td>{q.receiversName}</td>
               <td>{q.receiversAddress}</td>

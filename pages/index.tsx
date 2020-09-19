@@ -29,18 +29,6 @@ const App = () => {
       shippersEmailAddress,
       shippersName,
     } = getValues();
-    console.log(getValues());
-    console.log(
-      Boolean(
-        receiversAddress &&
-          receiversContactNumber &&
-          receiversName &&
-          shippersAddress &&
-          shippersContactNumber &&
-          shippersEmailAddress &&
-          shippersName
-      )
-    );
 
     return Boolean(
       receiversAddress &&
@@ -189,6 +177,7 @@ const App = () => {
               className="btn btn-success"
               onClick={submit}
               disabled={loading}
+              id="booking-submit-btn"
             >
               Submit
             </button>

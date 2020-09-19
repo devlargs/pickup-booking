@@ -15,10 +15,7 @@ async function dbConnect() {
     });
 
     connection.isConnected = db.connections[0].readyState;
-  } catch (ex) {
-    console.log(ex);
-    console.log("database connection error");
-  }
+  } catch (ex) {}
 }
 
 export default dbConnect;
