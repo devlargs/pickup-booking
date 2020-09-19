@@ -3,8 +3,7 @@ import {
   createAsyncThunk,
   createSelector,
 } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
-import toastOptions from "constants/toastOptions";
+import swal from "sweetalert";
 
 export const loadBooking = createAsyncThunk(
   "booking/load",
@@ -41,6 +40,28 @@ export const addBooking = createAsyncThunk(
   }
 );
 
+export const updateBooking = createAsyncThunk(
+  "booking/update",
+  async ({ id, obj }: { id: string; obj: any }, thunkAPI) => {
+    try {
+      const url = `/api/booking/${id}`;
+      const response = await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify({
+          ...obj,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      return response.json();
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.message });
+    }
+  }
+);
+
 const bookingSlice = createSlice({
   name: "booking",
   initialState: {
@@ -56,9 +77,28 @@ const bookingSlice = createSlice({
     [addBooking.fulfilled as any]: (state: any, action) => {
       state.data.push(action.payload.data);
       state.loading = false;
-      toast.success("Successfully added booking", toastOptions);
+      swal("Nice", "Successfully added booking", "success");
     },
     [addBooking.rejected as any]: (state: any, action) => {
+      state.error = action.payload.error;
+      state.loading = false;
+    },
+    [updateBooking.pending as any]: (state) => {
+      state.loading = true;
+    },
+    [updateBooking.fulfilled as any]: (state: any, action) => {
+      console.log(action, "ACTIOn");
+      state.data = state.data.map((q) => {
+        if (q._id === action.meta.arg.id) {
+          return action.payload.data;
+        } else {
+          return q;
+        }
+      });
+      state.loading = false;
+      //   swal("Sweet!", "Successfully updated booking", "success");
+    },
+    [updateBooking.rejected as any]: (state: any, action) => {
       state.error = action.payload.error;
       state.loading = false;
     },
