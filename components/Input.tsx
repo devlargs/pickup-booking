@@ -1,16 +1,17 @@
 import camelToSentenceCase from "utils/camelToSentenceCase";
 
 type Props = {
-  errorText?: string;
+  error?: boolean;
   label: string;
   register: any;
   name: string;
 };
 
-export const Input = ({ label, errorText = "", register, name }: Props) => (
+export const Input = ({ label, error = false, register, name }: Props) => (
   <div className="form-group">
     <label htmlFor={label.toLowerCase()}>{camelToSentenceCase(label)}</label>
     <input
+      required={true}
       name={name}
       ref={register}
       placeholder={`Enter ${camelToSentenceCase(label)}`}
@@ -18,7 +19,7 @@ export const Input = ({ label, errorText = "", register, name }: Props) => (
       className="form-control parsley-validated parsley-error"
       data-required="true"
     />
-    {errorText && (
+    {error && (
       <ul className="parsley-error-list" style={{ display: "block" }}>
         <li className="required" style={{ display: "list-item" }}>
           This value is required.

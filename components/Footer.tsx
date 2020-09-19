@@ -22,19 +22,19 @@ const Footer = () => (
           <ul className="icons-list">
             <li>
               <i className="fa fa-angle-double-right icon-li"></i>
-              <a href="javascript:;">Frequently Asked Questions</a>
+              <a>Frequently Asked Questions</a>
             </li>
             <li>
               <i className="fa fa-angle-double-right icon-li"></i>
-              <a href="javascript:;">Ask a Question</a>
+              <a>Ask a Question</a>
             </li>
             <li>
               <i className="fa fa-angle-double-right icon-li"></i>
-              <a href="javascript:;">Video Tutorial</a>
+              <a>Video Tutorial</a>
             </li>
             <li>
               <i className="fa fa-angle-double-right icon-li"></i>
-              <a href="javascript:;">Feedback</a>
+              <a>Feedback</a>
             </li>
           </ul>
         </div>
@@ -47,19 +47,19 @@ const Footer = () => (
           <ul className="icons-list">
             <li>
               <i className="fa fa-angle-double-right icon-li"></i>
-              <a href="javascript:;">License</a>
+              <a>License</a>
             </li>
             <li>
               <i className="fa fa-angle-double-right icon-li"></i>
-              <a href="javascript:;">Terms of Use</a>
+              <a>Terms of Use</a>
             </li>
             <li>
               <i className="fa fa-angle-double-right icon-li"></i>
-              <a href="javascript:;">Privacy Policy</a>
+              <a>Privacy Policy</a>
             </li>
             <li>
               <i className="fa fa-angle-double-right icon-li"></i>
-              <a href="javascript:;">Security</a>
+              <a>Security</a>
             </li>
           </ul>
         </div>
@@ -72,19 +72,19 @@ const Footer = () => (
           <ul className="icons-list">
             <li>
               <i className="fa fa-angle-double-right icon-li"></i>
-              <a href="javascript:;">Consectetur adipisicing</a>
+              <a>Consectetur adipisicing</a>
             </li>
             <li>
               <i className="fa fa-angle-double-right icon-li"></i>
-              <a href="javascript:;">Eiusmod tempor </a>
+              <a>Eiusmod tempor </a>
             </li>
             <li>
               <i className="fa fa-angle-double-right icon-li"></i>
-              <a href="javascript:;">Fugiat nulla pariatur</a>
+              <a>Fugiat nulla pariatur</a>
             </li>
             <li>
               <i className="fa fa-angle-double-right icon-li"></i>
-              <a href="javascript:;">Officia deserunt</a>
+              <a>Officia deserunt</a>
             </li>
           </ul>
         </div>
