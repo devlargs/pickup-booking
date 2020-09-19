@@ -2,7 +2,7 @@ import { model, models, Schema } from "mongoose";
 import timestamps from "constants/timestamps";
 import enums from "constants/enums";
 
-const name = "kanban_statuses";
+const name = "booking";
 const BookingSchema = new Schema(
   {
     shipmentType: {
@@ -20,11 +20,11 @@ const BookingSchema = new Schema(
     },
     shippersEmailAddress: {
       type: String,
-      required: [true, "Shippers Email Address is required"],
+      required: [true, "Shippers Email Address is required!"],
     },
     shippersContactNumber: {
       type: String,
-      required: [true, "Shippers Contact Number is required"],
+      required: [true, "Shippers Contact Number is required!"],
     },
     receiversName: {
       type: String,
@@ -32,15 +32,21 @@ const BookingSchema = new Schema(
     },
     receiversContactNumber: {
       type: String,
-      required: [true, "Receiver's Contact number is required"],
+      required: [true, "Receiver's Contact number is required!"],
+    },
+    receiversAddress: {
+      type: String,
+      required: [true, "Receiver's Address is required!"],
     },
     modeOfService: {
       type: String,
       enum: enums.modeOfService,
+      required: [true, "Mode of Service is required!"],
     },
     paymentMode: {
       type: String,
       enum: enums.paymentMode,
+      required: [true, "Payment Mode is required!"],
     },
   },
   {

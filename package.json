@@ -2,12 +2,13 @@
   "name": "with-typescript",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev -p 6969",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc"
   },
   "dependencies": {
+    "@types/mongoose": "^5.7.36",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "mongoose": "^5.10.5",

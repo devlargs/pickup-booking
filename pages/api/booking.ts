@@ -10,8 +10,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   await connect();
 
   if (req.method === "POST") {
-    const book = new BookingSchema(req.body);
     try {
+      const book = new BookingSchema(req.body);
       const newBooking = await book.save();
       res.status(200).send({ data: newBooking });
     } catch (ex) {
