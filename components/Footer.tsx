@@ -1,9 +1,9 @@
-const Footer = () => {
+const Footer = () => (
   <footer className="footer">
     <div className="container">
       <div className="row">
         <div className="col-sm-3">
-          <h4>About Theme</h4>
+          <h4>Sample Footer</h4>
 
           <br />
 
@@ -11,7 +11,7 @@ const Footer = () => {
 
           <hr />
 
-          <p>&copy; 2014 Jumpstart Themes.</p>
+          <p>&copy; 2020 devlargs</p>
         </div>
 
         <div className="col-sm-3">
@@ -90,7 +90,7 @@ const Footer = () => {
         </div>
       </div>
     </div>
-  </footer>;
-};
+  </footer>
+);
 
 export default Footer;

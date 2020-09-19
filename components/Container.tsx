@@ -1,6 +1,4 @@
-import { ReactElement } from "react";
-
-const Container = (props) => {
+const Container = (props: any) => {
   return (
     <div className="container">
       <div className="content">
