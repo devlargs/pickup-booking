@@ -1,22 +1,52 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import Header from "components/Header";
 import Container from "components/Container";
 import Input from "components/Input";
 import Footer from "components/Footer";
 import Portlet from "components/Portlet";
 import enums from "constants/enums";
+import toastOptions from "constants/toastOptions";
 
 const App = () => {
-  const { register, errors, handleSubmit, getValues, reset, watch } = useForm();
+  const { register, handleSubmit, getValues, reset, watch } = useForm();
   const [clicked, setClicked] = useState(false);
 
-  const validate = (e) => {
+  const isValid = (e) => {
     return clicked && watch([e])[e] === "";
+  };
+
+  const validateForm = (): Boolean => {
+    const {
+      receiversAddress,
+      receiversContactNumber,
+      receiversName,
+      shippersAddress,
+      shippersContactNumber,
+      shippersEmailAddress,
+      shippersName,
+    } = getValues();
+    return (
+      receiversAddress &&
+      receiversContactNumber &&
+      receiversName &&
+      shippersAddress &&
+      shippersContactNumber &&
+      shippersEmailAddress &&
+      shippersName
+    );
   };
 
   const submit = (e: any) => {
     setClicked(true);
+
+    if (validateForm()) {
+      toast.success(<p>Success</p>, toastOptions);
+    } else {
+      // toast.error("Please fill in all fields", toastOptions);
+    }
+
     e.preventDefault();
   };
 
@@ -34,25 +64,25 @@ const App = () => {
                   register={register({
                     required: true,
                   })}
-                  error={validate("shippersName")}
+                  error={isValid("shippersName")}
                 />
                 <Input
                   name="shippersContactNumber"
                   label="Contact Number"
                   register={register}
-                  error={validate("shippersContactNumber")}
+                  error={isValid("shippersContactNumber")}
                 />
                 <Input
                   name="shippersAddress"
                   label="Address"
                   register={register}
-                  error={validate("shippersAddress")}
+                  error={isValid("shippersAddress")}
                 />
                 <Input
                   name="shippersEmailAddress"
                   label="Email Address"
                   register={register}
-                  error={validate("shippersEmailAddress")}
+                  error={isValid("shippersEmailAddress")}
                 />
               </Portlet>
             </div>
@@ -63,21 +93,21 @@ const App = () => {
                   name="receiversName"
                   label="Full Name"
                   register={register}
-                  error={validate("receiversName")}
+                  error={isValid("receiversName")}
                 />
 
                 <Input
                   name="receiversContactNumber"
                   label="Contact Number"
                   register={register}
-                  error={validate("receiversContactNumber")}
+                  error={isValid("receiversContactNumber")}
                 />
 
                 <Input
                   name="receiversAddress"
                   label="Address"
                   register={register}
-                  error={validate("receiversAddress")}
+                  error={isValid("receiversAddress")}
                 />
               </Portlet>
             </div>
