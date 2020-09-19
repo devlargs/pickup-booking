@@ -57,7 +57,7 @@ const App = () => {
         <Header title="Book A Pick Up" />
         <form onSubmit={handleSubmit(submit)}>
           <div className="row">
-            <div className="col-xs-6">
+            <div className="col-lg-6">
               <Portlet title="Shippers Information" icon={faTruck}>
                 <Input
                   name="shippersName"
@@ -88,7 +88,7 @@ const App = () => {
               </Portlet>
             </div>
 
-            <div className="col-xs-6">
+            <div className="col-lg-6">
               <Portlet title="Receivers Information" icon={faUser}>
                 <Input
                   name="receiversName"

@@ -4,8 +4,12 @@ body {
   padding: 0;
 }
 
-.ml-10 {
-  margin-left: 10px;
+.mr-10 mb-3 {
+  margin-right: 10px;
+}
+
+.mb-3 {
+  margin-right: 3px;
 }
 
 #nprogress {
