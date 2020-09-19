@@ -9,6 +9,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   await cors(req, res);
   await connect();
 
+  if (req.method === "GET") {
+    try {
+      const books = await BookingSchema.find();
+      res.status(200).send({ data: books });
+    } catch (error) {
+      console.log(error);
+      res.send({ error });
+    }
+  }
+
   if (req.method === "POST") {
     try {
       const book = new BookingSchema(req.body);

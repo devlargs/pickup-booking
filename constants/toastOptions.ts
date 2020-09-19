@@ -1,4 +1,4 @@
 export default {
   hideProgressBar: true,
-  autoClose: 2000,
+  autoClose: 1500,
 };

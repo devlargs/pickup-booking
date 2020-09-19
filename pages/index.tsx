@@ -1,17 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import Header from "components/Header";
 import Container from "components/Container";
 import Input from "components/Input";
 import Footer from "components/Footer";
 import Portlet from "components/Portlet";
 import enums from "constants/enums";
-import toastOptions from "constants/toastOptions";
+// import { toast } from "react-toastify";
+// import toastOptions from "constants/toastOptions";
+import { addBooking, selectBookings } from "store/reducers/booking";
+import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
+  const dispatch = useDispatch();
   const { register, handleSubmit, getValues, reset, watch } = useForm();
   const [clicked, setClicked] = useState(false);
+  const { data, loading } = useSelector(selectBookings);
+
+  // useEffect(() => {
+  //   if (clicked && !loading) {
+  //     toast.success("Successfully added booking", toastOptions);
+  //     console.log(data);
+  //     // reset();
+  //     // setClicked(false);
+  //   }
+  // }, [clicked, loading, reset, setClicked]);
 
   const isValid = (e) => {
     return clicked && watch([e])[e] === "";
@@ -27,26 +40,38 @@ const App = () => {
       shippersEmailAddress,
       shippersName,
     } = getValues();
-    return (
+    console.log(getValues());
+    console.log(
+      Boolean(
+        receiversAddress &&
+          receiversContactNumber &&
+          receiversName &&
+          shippersAddress &&
+          shippersContactNumber &&
+          shippersEmailAddress &&
+          shippersName
+      )
+    );
+
+    return Boolean(
       receiversAddress &&
-      receiversContactNumber &&
-      receiversName &&
-      shippersAddress &&
-      shippersContactNumber &&
-      shippersEmailAddress &&
-      shippersName
+        receiversContactNumber &&
+        receiversName &&
+        shippersAddress &&
+        shippersContactNumber &&
+        shippersEmailAddress &&
+        shippersName
     );
   };
 
   const submit = (e: any) => {
     setClicked(true);
-
+    console.log(validateForm(), "wtf");
     if (validateForm()) {
-      toast.success(<p>Success</p>, toastOptions);
-    } else {
-      // toast.error("Please fill in all fields", toastOptions);
+      dispatch(addBooking(getValues()));
+      reset();
+      setClicked(false);
     }
-
     e.preventDefault();
   };
 
@@ -170,7 +195,12 @@ const App = () => {
           </Portlet>
 
           <div style={{ textAlign: "right" }}>
-            <button type="submit" className="btn btn-success" onClick={submit}>
+            <button
+              type="submit"
+              className="btn btn-success"
+              onClick={submit}
+              disabled={loading}
+            >
               Submit
             </button>
           </div>

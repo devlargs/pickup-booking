@@ -48,6 +48,11 @@ const BookingSchema = new Schema(
       enum: enums.paymentMode,
       required: [true, "Payment Mode is required!"],
     },
+    status: {
+      type: String,
+      enum: ["PENDING", "SUCCESS", "CANCELLED"],
+      default: "PENDING",
+    },
   },
   {
     timestamps,
