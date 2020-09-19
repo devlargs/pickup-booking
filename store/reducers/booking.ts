@@ -87,7 +87,6 @@ const bookingSlice = createSlice({
       state.loading = true;
     },
     [updateBooking.fulfilled as any]: (state: any, action) => {
-      console.log(action, "ACTIOn");
       state.data = state.data.map((q) => {
         if (q._id === action.meta.arg.id) {
           return action.payload.data;
