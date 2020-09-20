@@ -1,11 +1,9 @@
-// const casual = require("casual");
-
 describe("Booking Page tests", () => {
   beforeEach(() => {
     cy.visit("http://localhost:6969");
   });
 
-  xit("navigates through the links", () => {
+  it("navigates through the links", () => {
     cy.get("#book-a-pick-up").click();
     cy.url().should("eq", "http://localhost:6969/customers");
     cy.get("#booking-list").click();
@@ -13,7 +11,7 @@ describe("Booking Page tests", () => {
     cy.get("#drivers-main").click();
   });
 
-  xit("should show error messages when input are left blank", () => {
+  it("should show error messages when input are left blank", () => {
     cy.get("#booking-submit-btn").click();
     cy.get(".parsley-error-list").should("have.length", 6);
   });
