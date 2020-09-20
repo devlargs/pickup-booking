@@ -6,6 +6,7 @@ import {
   loadBooking,
   updateBooking,
 } from "store/reducers/booking";
+import { selectDrivers, loadDrivers } from "store/reducers/drivers";
 import { useEffect } from "react";
 import swal from "@sweetalert/with-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,42 +15,18 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 const Jobs = () => {
   const dispatch = useDispatch();
   const { jobs, loading } = useSelector(selectBookings);
+  const { data } = useSelector(selectDrivers);
 
   useEffect(() => {
     dispatch(loadBooking());
-  }, [loadBooking, dispatch]);
-
-  const updateStatus = async ({
-    id,
-    status,
-    title = "Are you sure?",
-    icon = "warning",
-  }: {
-    id: string;
-    status: string;
-    title?: string;
-    icon?: string;
-  }) => {
-    const bool = await swal({
-      title,
-      icon,
-    });
-
-    if (bool) {
-      dispatch(
-        updateBooking({
-          id,
-          obj: { status },
-        })
-      );
-    }
-  };
+    dispatch(loadDrivers());
+  }, [loadBooking, dispatch, loadDrivers]);
 
   return (
     <Container>
-      <Header title="Job Listing" />
+      <Header title={`Job Listing (${jobs.length})`} />
       {!loading ? (
-        <div style={{ width: "100%", overflowY: "scroll" }}>
+        <div style={{ width: "100%", overflowY: "auto", overflowX: "auto" }}>
           <table className="table table-hover">
             <thead>
               <tr>
@@ -123,22 +100,28 @@ const Jobs = () => {
                     >
                       View
                     </button>
-                    {q.status !== "CANCELLED" && q.status !== "DELIVERED" && (
-                      <button
-                        type="button"
-                        className="btn btn-danger btn-xs mr-10 mb-3"
-                        onClick={() =>
-                          updateStatus({
-                            id: q._id,
-                            status: "CANCELLED",
-                            title: "Cancel this transaction?",
-                            icon: "warning",
-                          })
-                        }
-                      >
-                        Cancel
-                      </button>
-                    )}
+                    <button
+                      className="btn btn-success btn-xs  mr-10 mb-3"
+                      onClick={() =>
+                        swal({
+                          content: (
+                            <div style={{ textAlign: "left" }}>
+                              <h3>Please select driver</h3>
+                              <select style={{ padding: 10, width: "100%" }}>
+                                {data.map((q) => (
+                                  <option key={q._id}>
+                                    {q.fullName} ({q.driversLicense})
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
+                          ),
+                          buttons: {},
+                        })
+                      }
+                    >
+                      Accept
+                    </button>
                   </td>
                 </tr>
               ))}

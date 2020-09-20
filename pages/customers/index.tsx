@@ -8,10 +8,18 @@ import enums from "constants/enums";
 import { addBooking, selectBookings } from "store/reducers/booking";
 import { useDispatch, useSelector } from "react-redux";
 import { faCogs, faTruck, faUser } from "@fortawesome/free-solid-svg-icons";
+import casual from "casual-browserify";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { register, handleSubmit, getValues, reset, watch } = useForm();
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    setValue,
+    reset,
+    watch,
+  } = useForm();
   const [clicked, setClicked] = useState(false);
   const { loading } = useSelector(selectBookings);
 
@@ -37,6 +45,18 @@ const App = () => {
         shippersContactNumber &&
         shippersName
     );
+  };
+
+  const randomize = () => {
+    setValue("shippersName", casual.full_name);
+    setValue("shippersContactNumber", casual.phone);
+    setValue("shippersAddress", casual.address1);
+    setValue("receiversName", casual.full_name);
+    setValue("receiversContactNumber", casual.phone);
+    setValue("receiversAddress", casual.address1);
+    setValue("shipmentType", casual.random_element(enums.shipmentType));
+    setValue("paymentMode", casual.random_element(enums.paymentMode));
+    setValue("modeOfService", casual.random_element(enums.modeOfService));
   };
 
   const submit = (e: any) => {
@@ -163,6 +183,27 @@ const App = () => {
           </Portlet>
 
           <div style={{ textAlign: "right" }}>
+            <button
+              className="btn btn-danger"
+              style={{ marginRight: 10 }}
+              onClick={() => {
+                reset();
+                setClicked(false);
+              }}
+              type="button"
+            >
+              Reset
+            </button>
+
+            <button
+              className="btn btn-info"
+              style={{ marginRight: 10 }}
+              onClick={randomize}
+              type="button"
+            >
+              Fill Up Randomly
+            </button>
+
             <button
               type="submit"
               className="btn btn-success"

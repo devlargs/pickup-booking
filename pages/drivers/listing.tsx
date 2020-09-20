@@ -12,18 +12,36 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { addDriver, selectDrivers, loadDrivers } from "store/reducers/drivers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import casual from "casual-browserify";
 
 const Listing = () => {
   const dispatch = useDispatch();
   const { data, addLoading, loading } = useSelector(selectDrivers);
-  const { register, handleSubmit, getValues, reset, watch } = useForm();
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    reset,
+    watch,
+    setValue,
+  } = useForm();
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     dispatch(loadDrivers());
   }, []);
 
-  const isValid = (e) => {
+  const randomize = () => {
+    setValue("fullName", casual.full_name);
+    setValue(
+      "driversLicense",
+      `${casual.word.substr(0, 3).toUpperCase()}-${casual
+        .array_of_digits(10)
+        .join("")}`
+    );
+  };
+
+  const isValid = (e: any) => {
     return clicked && watch([e])[e] === "";
   };
 
@@ -63,6 +81,14 @@ const Listing = () => {
                 error={isValid("driversLicense")}
               />
               <div style={{ textAlign: "right" }}>
+                <button
+                  type="button"
+                  className="btn btn-info"
+                  style={{ marginRight: 10 }}
+                  onClick={randomize}
+                >
+                  Fill up randomly
+                </button>
                 <button
                   type="submit"
                   className="btn btn-success"
