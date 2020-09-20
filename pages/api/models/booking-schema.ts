@@ -1,6 +1,7 @@
 import { model, models, Schema } from "mongoose";
 import timestamps from "constants/timestamps";
 import enums from "constants/enums";
+import Drivers from "./drivers";
 
 const name = "booking";
 const BookingSchema = new Schema(
@@ -48,6 +49,10 @@ const BookingSchema = new Schema(
       type: String,
       enum: ["PENDING", "DELIVERED", "CANCELLED", "PROCESSING"],
       default: "PENDING",
+    },
+    acceptedBy: {
+      type: Schema.Types.ObjectId,
+      ref: Drivers,
     },
   },
   {

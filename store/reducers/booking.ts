@@ -95,7 +95,6 @@ const bookingSlice = createSlice({
         }
       });
       state.loading = false;
-      //   swal("Sweet!", "Successfully updated booking", "success");
     },
     [updateBooking.rejected as any]: (state: any, action) => {
       state.error = action.payload.error;

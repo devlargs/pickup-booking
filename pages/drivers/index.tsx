@@ -69,7 +69,6 @@ const Jobs = () => {
                   <td>{q.receiversName}</td>
                   <td>{q.receiversAddress}</td>
                   <td>{q.shipmentType}</td>
-
                   <td>
                     {q.status === "PENDING" && (
                       <span className="label label-warning">Pending</span>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
+  faCar,
   faPencilAlt,
   faPeopleCarry,
   faTruck,
@@ -26,16 +27,28 @@ const Mainbar = () => {
         <div className="mainbar-collapse collapse">
           <ul className="nav navbar-nav mainbar-nav">
             {currentUser === "drivers" && (
-              <li>
-                <Link href="/drivers">
-                  <a>
-                    <i>
-                      <FontAwesomeIcon icon={faPeopleCarry} />
-                    </i>
-                    Job Listing
-                  </a>
-                </Link>
-              </li>
+              <>
+                <li>
+                  <Link href="/drivers">
+                    <a>
+                      <i>
+                        <FontAwesomeIcon icon={faPeopleCarry} />
+                      </i>
+                      Job Listing
+                    </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/drivers/listing">
+                    <a>
+                      <i>
+                        <FontAwesomeIcon icon={faCar} />
+                      </i>
+                      Drivers
+                    </a>
+                  </Link>
+                </li>
+              </>
             )}
             {currentUser === "customers" && (
               <>
