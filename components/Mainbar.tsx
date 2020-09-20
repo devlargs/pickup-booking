@@ -52,7 +52,7 @@ const Mainbar = () => {
             )}
             {currentUser === "customers" && (
               <>
-                <li>
+                <li id="book-a-pick-up">
                   <Link href="/customers">
                     <a>
                       <i>
@@ -62,7 +62,7 @@ const Mainbar = () => {
                     </a>
                   </Link>
                 </li>
-                <li>
+                <li id="booking-list">
                   <Link href="/customers/deliveries">
                     <a>
                       <>

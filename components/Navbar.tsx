@@ -39,6 +39,7 @@ const Navbar = (): ReactElement => {
         <div className="navbar-collapse collapse">
           <ul className="nav navbar-nav navbar-right">
             <li
+              id="customers-main"
               onClick={() => updateAuth("customers")}
               className={`${currentUser === "customers" && "active"}`}
             >
@@ -47,6 +48,7 @@ const Navbar = (): ReactElement => {
               </Link>
             </li>
             <li
+              id="drivers-main"
               onClick={() => updateAuth("drivers")}
               className={`${currentUser === "drivers" && "active"}`}
             >
