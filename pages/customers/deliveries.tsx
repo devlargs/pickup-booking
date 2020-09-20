@@ -58,7 +58,7 @@ const Deliveries = () => {
                 <th>Receiver's Address</th>
                 <th>Shipment Type</th>
                 <th>Status</th>
-                <th>Mode of Payment</th>
+                <th>Accepted By</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -69,22 +69,22 @@ const Deliveries = () => {
                   <td>{q.receiversName}</td>
                   <td>{q.receiversAddress}</td>
                   <td>{q.shipmentType}</td>
-
                   <td>
                     {q.status === "PENDING" && (
                       <span className="label label-warning">Pending</span>
                     )}
-                    {q.status === "PROCESSING" && (
-                      <span className="label label-secondary">Processing</span>
-                    )}
-                    {q.status === "DELIVERED" && (
-                      <span className="label label-success">Delivered</span>
+                    {q.status === "ACCEPTED" && (
+                      <span className="label label-success">Accepted</span>
                     )}
                     {q.status === "CANCELLED" && (
                       <span className="label label-default">Cancelled</span>
                     )}
                   </td>
-                  <td>{q.paymentMode}</td>
+                  <td>
+                    {q.acceptedBy
+                      ? `${q.acceptedBy.fullName} (${q.acceptedBy.driversLicense})`
+                      : "-"}
+                  </td>
                   <td>
                     <button
                       type="button"
@@ -93,6 +93,10 @@ const Deliveries = () => {
                         swal({
                           content: (
                             <div style={{ textAlign: "left" }}>
+                              <h1 style={{ textAlign: "center" }}>
+                                Booking Details
+                              </h1>
+                              <hr />
                               <div>
                                 <b>Shipper's Name</b>: {q.shippersName}
                               </div>
@@ -116,6 +120,15 @@ const Deliveries = () => {
                               <div>Shipment Type: {q.shipmentType}</div>
                               <div>Mode of Service: {q.modeOfService}</div>
                               <div>Payment Mode: {q.paymentMode}</div>
+                              <hr />
+                              {q.acceptedBy && (
+                                <div>
+                                  <div>
+                                    <b>Accepted By</b>: {q.acceptedBy.fullName}{" "}
+                                    ({q.acceptedBy.driversLicense})
+                                  </div>
+                                </div>
+                              )}
                             </div>
                           ),
                           buttons: {},

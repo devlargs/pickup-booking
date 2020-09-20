@@ -20,12 +20,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (req.method === "POST") {
     try {
-      console.log(req.body);
       const driver = new DriverSchema(req.body);
       const newDriver = await driver.save();
       res.status(200).send({ data: newDriver });
     } catch (ex) {
-      console.log(ex);
       res.status(400).send({ error: ex });
     }
   }

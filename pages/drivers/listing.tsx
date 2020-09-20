@@ -106,7 +106,7 @@ const Listing = () => {
           </Portlet>
         </div>
         <div className="col-md-7">
-          <Portlet title="Lists" icon={faTable}>
+          <Portlet title="Lists of Drivers" icon={faTable}>
             {loading ? (
               <FontAwesomeIcon icon={faSpinner} spin />
             ) : (

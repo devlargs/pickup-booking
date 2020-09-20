@@ -57,7 +57,6 @@ const driversSlice = createSlice({
       state.addLoading = false;
     },
     [addDriver.rejected as any]: (state: any, action) => {
-      console.log(action);
       state.error = action.payload.error;
       state.addLoading = false;
     },
@@ -65,7 +64,6 @@ const driversSlice = createSlice({
       state.loading = true;
     },
     [loadDrivers.fulfilled as any]: (state: any, action) => {
-      console.log(action.payload);
       state.data = action.payload.data;
       state.loading = false;
     },

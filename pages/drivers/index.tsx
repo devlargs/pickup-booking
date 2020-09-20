@@ -7,15 +7,17 @@ import {
   updateBooking,
 } from "store/reducers/booking";
 import { selectDrivers, loadDrivers } from "store/reducers/drivers";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import swal from "@sweetalert/with-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
+let val = "";
 const Jobs = () => {
   const dispatch = useDispatch();
   const { jobs, loading } = useSelector(selectBookings);
   const { data } = useSelector(selectDrivers);
+  const [value, setValue] = useState("");
 
   useEffect(() => {
     dispatch(loadBooking());
@@ -47,18 +49,7 @@ const Jobs = () => {
                   <td>{q.receiversAddress}</td>
                   <td>{q.shipmentType}</td>
                   <td>
-                    {q.status === "PENDING" && (
-                      <span className="label label-warning">Pending</span>
-                    )}
-                    {q.status === "PROCESSING" && (
-                      <span className="label label-secondary">Processing</span>
-                    )}
-                    {q.status === "DELIVERED" && (
-                      <span className="label label-success">Delivered</span>
-                    )}
-                    {q.status === "CANCELLED" && (
-                      <span className="label label-default">Cancelled</span>
-                    )}
+                    <span className="label label-warning">Pending</span>
                   </td>
                   <td>{q.paymentMode}</td>
                   <td>
@@ -104,16 +95,54 @@ const Jobs = () => {
                       className="btn btn-success btn-xs  mr-10 mb-3"
                       onClick={() =>
                         swal({
+                          allowOutsideClick: false,
+                          closeOnEscape: false,
                           content: (
                             <div style={{ textAlign: "left" }}>
-                              <h3>Please select driver</h3>
-                              <select style={{ padding: 10, width: "100%" }}>
-                                {data.map((q) => (
-                                  <option key={q._id}>
+                              <p>Please select driver to accept the job</p>
+                              <select
+                                defaultValue=""
+                                placeholder="Please select driver"
+                                style={{ padding: 10, width: "100%" }}
+                                onChange={(e) => {
+                                  val = e.target.value;
+                                }}
+                              >
+                                <option value="" disabled>
+                                  Please select driver
+                                </option>
+                                {data.map((q: any) => (
+                                  <option key={q._id} value={q._id}>
                                     {q.fullName} ({q.driversLicense})
                                   </option>
                                 ))}
                               </select>
+                              <div
+                                style={{ textAlign: "right", marginTop: 10 }}
+                              >
+                                <button
+                                  style={{
+                                    backgroundColor: "#5CB85C",
+                                    border: "none",
+                                    color: "white",
+                                    borderRadius: 3,
+                                  }}
+                                  onClick={() => {
+                                    dispatch(
+                                      updateBooking({
+                                        id: q._id,
+                                        obj: {
+                                          status: "ACCEPTED",
+                                          acceptedBy: val,
+                                        },
+                                      })
+                                    );
+                                    swal.close();
+                                  }}
+                                >
+                                  Accept
+                                </button>
+                              </div>
                             </div>
                           ),
                           buttons: {},

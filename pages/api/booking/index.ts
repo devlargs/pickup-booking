@@ -11,8 +11,20 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (req.method === "GET") {
     try {
-      const books = await BookingSchema.find();
-      res.status(200).send({ data: books });
+      const data = await new Promise((resolve) => {
+        BookingSchema.find()
+          .populate("acceptedBy")
+          .exec((error, data) => {
+            if (error) {
+              resolve({ error });
+            } else {
+              resolve({
+                data,
+              });
+            }
+          });
+      });
+      res.send(data);
     } catch (error) {
       res.send({ error });
     }
