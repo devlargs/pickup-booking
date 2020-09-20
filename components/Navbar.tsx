@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCogs } from "@fortawesome/free-solid-svg-icons";
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { selectAuth, updateUser } from "store/reducers/auth";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
@@ -8,6 +8,15 @@ import Link from "next/link";
 const Navbar = (): ReactElement => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector(selectAuth);
+
+  useEffect(() => {
+    if (location) {
+      const { pathname } = location;
+      if (pathname.includes("drivers")) {
+        dispatch(updateUser("drivers"));
+      }
+    }
+  }, []);
 
   const updateAuth = (currentUser: string) => {
     dispatch(updateUser(currentUser));

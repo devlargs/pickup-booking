@@ -13,7 +13,7 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const Jobs = () => {
   const dispatch = useDispatch();
-  const { data, loading } = useSelector(selectBookings);
+  const { jobs, loading } = useSelector(selectBookings);
 
   useEffect(() => {
     dispatch(loadBooking());
@@ -47,7 +47,7 @@ const Jobs = () => {
 
   return (
     <Container>
-      <Header title="Jobs" />
+      <Header title="Job Listing" />
       {!loading ? (
         <div style={{ width: "100%", overflowY: "scroll" }}>
           <table className="table table-hover">
@@ -63,7 +63,7 @@ const Jobs = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((q: any, i: number) => (
+              {jobs.map((q: any, i: number) => (
                 <tr key={i}>
                   <td>{q.shippersName}</td>
                   <td>{q.receiversName}</td>
@@ -140,54 +140,6 @@ const Jobs = () => {
                         Cancel
                       </button>
                     )}
-
-                    {/* {q.status === "PENDING" && (
-                      <button
-                        type="button"
-                        className="btn btn-success btn-xs mr-10 mb-3"
-                        onClick={() =>
-                          updateStatus({
-                            id: q._id,
-                            status: "PROCESSING",
-                            title: "Accept Job?",
-                          })
-                        }
-                      >
-                        Accept
-                      </button>
-                    )} */}
-
-                    {/* {q.status === "PROCESSING" && (
-                      <button
-                        type="button"
-                        className="btn btn-success btn-xs mr-10 mb-3"
-                        onClick={() =>
-                          updateStatus({
-                            id: q._id,
-                            status: "DELIVERED",
-                            title: "Finish Job?",
-                          })
-                        }
-                      >
-                        Complete
-                      </button>
-                    )}
-
-                    {q.status === "CANCELLED" && (
-                      <button
-                        type="button"
-                        className="btn btn-info btn-xs mr-10 mb-3"
-                        onClick={() =>
-                          updateStatus({
-                            id: q._id,
-                            status: "PROCESSING",
-                            title: "Re-open?",
-                          })
-                        }
-                      >
-                        Re-open
-                      </button>
-                    )} */}
                   </td>
                 </tr>
               ))}

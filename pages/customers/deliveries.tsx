@@ -47,9 +47,9 @@ const Deliveries = () => {
 
   return (
     <Container>
-      <Header title="Deliveries" />
+      <Header title="Booking List" />
       {!loading ? (
-        <div style={{ width: "100%", overflowY: "scroll" }}>
+        <div style={{ width: "100%", overflowX: "auto", overflowY: "auto" }}>
           <table className="table table-hover">
             <thead>
               <tr>

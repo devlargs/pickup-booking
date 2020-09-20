@@ -117,6 +117,7 @@ const bookingSlice = createSlice({
 
 export const selectBookings = createSelector(
   (state: any) => ({
+    jobs: state.booking.data.filter((q) => q.status === "PENDING"),
     data: state.booking.data,
     loading: state.booking.loading,
     error: state.booking.error,

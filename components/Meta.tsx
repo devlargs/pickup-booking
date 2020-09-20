@@ -13,13 +13,13 @@ const Meta = () => (
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Oswald:400,300,700"
     />
-    <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.min.css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/target-admin.css" />
+    <link rel="stylesheet" href="/css/jquery-ui-1.9.2.custom.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/target-admin.css" />
     <title>Sample app</title>
-    <script src="js/jquery-1.10.1.min.js"></script>
-    <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/jquery-1.10.1.min.js"></script>
+    <script src="/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script src="/js/admin.js"></script>
   </Head>
 );

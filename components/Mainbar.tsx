@@ -56,7 +56,7 @@ const Mainbar = () => {
                         <i>
                           <FontAwesomeIcon icon={faTruck} />
                         </i>
-                        Deliveries
+                        Booking List
                       </>
                     </a>
                   </Link>
