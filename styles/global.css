@@ -25,3 +25,8 @@ body {
   width: 100%;
   height: 3px;
 }
+
+.c-white {
+  cursor: pointer;
+  color: white !important;
+}

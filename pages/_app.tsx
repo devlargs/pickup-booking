@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import type { AppProps } from "next/app";
 import Meta from "components/Meta";
 import Navbar from "components/Navbar";
+import Mainbar from "components/Mainbar";
 import { Provider } from "react-redux";
 import store from "store";
 import NProgress from "nprogress";
@@ -31,6 +32,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     <Provider store={store}>
       <Meta />
       <Navbar />
+      <Mainbar />
       <Component {...pageProps} />
     </Provider>
   );

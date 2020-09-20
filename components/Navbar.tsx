@@ -1,50 +1,43 @@
-import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faPencilAlt,
-  faTruck,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCogs } from "@fortawesome/free-solid-svg-icons";
+import { ReactElement } from "react";
+import { selectAuth, updateUser } from "store/reducers/auth";
+import { useDispatch, useSelector } from "react-redux";
 
-const Navbar = () => (
-  <div className="mainbar">
-    <div className="container">
-      <button
-        type="button"
-        className="btn mainbar-toggle"
-        data-toggle="collapse"
-        data-target=".mainbar-collapse"
-      >
-        <FontAwesomeIcon icon={faBars} style={{ color: "white" }} />
-      </button>
-      <div className="mainbar-collapse collapse">
-        <ul className="nav navbar-nav mainbar-nav">
-          <li>
-            <Link href="/">
-              <a>
-                <i>
-                  <FontAwesomeIcon icon={faPencilAlt} />
-                </i>
-                Book a Pick Up
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/deliveries">
-              <a>
-                <>
-                  <i>
-                    <FontAwesomeIcon icon={faTruck} />
-                  </i>
-                  Deliveries
-                </>
-              </a>
-            </Link>
-          </li>
-        </ul>
+const Navbar = (): ReactElement => {
+  const dispatch = useDispatch();
+
+  const updateAuth = (currentUser: string) => {
+    dispatch(updateUser(currentUser));
+  };
+
+  return (
+    <div className="navbar">
+      <div className="container">
+        <div className="navbar-header">
+          <button
+            type="button"
+            className="navbar-toggle"
+            data-toggle="collapse"
+            data-target=".navbar-collapse"
+          >
+            <FontAwesomeIcon icon={faCogs} />
+          </button>
+        </div>
+
+        <div className="navbar-collapse collapse">
+          <ul className="nav navbar-nav navbar-right">
+            <li onClick={() => updateAuth("customers")}>
+              <a className="c-white">Customers</a>
+            </li>
+            <li onClick={() => updateAuth("drivers")}>
+              <a className="c-white">Drivers</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Navbar;
