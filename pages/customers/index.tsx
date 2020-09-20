@@ -26,7 +26,6 @@ const App = () => {
       receiversName,
       shippersAddress,
       shippersContactNumber,
-      shippersEmailAddress,
       shippersName,
     } = getValues();
 
@@ -36,7 +35,6 @@ const App = () => {
         receiversName &&
         shippersAddress &&
         shippersContactNumber &&
-        shippersEmailAddress &&
         shippersName
     );
   };
@@ -78,12 +76,6 @@ const App = () => {
                   label="Address"
                   register={register}
                   error={isValid("shippersAddress")}
-                />
-                <Input
-                  name="shippersEmailAddress"
-                  label="Email Address"
-                  register={register}
-                  error={isValid("shippersEmailAddress")}
                 />
               </Portlet>
             </div>

@@ -3,9 +3,11 @@ import { faCogs } from "@fortawesome/free-solid-svg-icons";
 import { ReactElement } from "react";
 import { selectAuth, updateUser } from "store/reducers/auth";
 import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
 
 const Navbar = (): ReactElement => {
   const dispatch = useDispatch();
+  const { currentUser } = useSelector(selectAuth);
 
   const updateAuth = (currentUser: string) => {
     dispatch(updateUser(currentUser));
@@ -27,11 +29,21 @@ const Navbar = (): ReactElement => {
 
         <div className="navbar-collapse collapse">
           <ul className="nav navbar-nav navbar-right">
-            <li onClick={() => updateAuth("customers")}>
-              <a className="c-white">Customers</a>
+            <li
+              onClick={() => updateAuth("customers")}
+              className={`${currentUser === "customers" && "active"}`}
+            >
+              <Link href="/customers">
+                <a className="c-white">Customers</a>
+              </Link>
             </li>
-            <li onClick={() => updateAuth("drivers")}>
-              <a className="c-white">Drivers</a>
+            <li
+              onClick={() => updateAuth("drivers")}
+              className={`${currentUser === "drivers" && "active"}`}
+            >
+              <Link href="/drivers">
+                <a className="c-white">Drivers</a>
+              </Link>
             </li>
           </ul>
         </div>

@@ -98,10 +98,6 @@ const Deliveries = () => {
                               </div>
                               <div>Shipper's Address: {q.shippersAddress}</div>
                               <div>
-                                Shipper's Email Address:{" "}
-                                {q.shippersEmailAddress}
-                              </div>
-                              <div>
                                 Shippers Contact Number:{" "}
                                 {q.shippersContactNumber}
                               </div>
@@ -145,7 +141,7 @@ const Deliveries = () => {
                       </button>
                     )}
 
-                    {q.status === "PENDING" && (
+                    {/* {q.status === "PENDING" && (
                       <button
                         type="button"
                         className="btn btn-success btn-xs mr-10 mb-3"
@@ -159,9 +155,9 @@ const Deliveries = () => {
                       >
                         Accept
                       </button>
-                    )}
+                    )} */}
 
-                    {q.status === "PROCESSING" && (
+                    {/* {q.status === "PROCESSING" && (
                       <button
                         type="button"
                         className="btn btn-success btn-xs mr-10 mb-3"
@@ -191,7 +187,7 @@ const Deliveries = () => {
                       >
                         Re-open
                       </button>
-                    )}
+                    )} */}
                   </td>
                 </tr>
               ))}

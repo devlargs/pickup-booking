@@ -18,10 +18,6 @@ const BookingSchema = new Schema(
       type: String,
       required: [true, "Shippers Address is required!"],
     },
-    shippersEmailAddress: {
-      type: String,
-      required: [true, "Shippers Email Address is required!"],
-    },
     shippersContactNumber: {
       type: String,
       required: [true, "Shippers Contact Number is required!"],
