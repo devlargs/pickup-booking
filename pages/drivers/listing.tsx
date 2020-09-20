@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   faIdCard,
   faSpinner,
@@ -10,14 +10,18 @@ import Input from "components/Input";
 import Portlet from "components/Portlet";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { addDriver, selectDrivers } from "store/reducers/drivers";
+import { addDriver, selectDrivers, loadDrivers } from "store/reducers/drivers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Listing = () => {
   const dispatch = useDispatch();
-  const { data, addLoading } = useSelector(selectDrivers);
+  const { data, addLoading, loading } = useSelector(selectDrivers);
   const { register, handleSubmit, getValues, reset, watch } = useForm();
   const [clicked, setClicked] = useState(false);
+
+  useEffect(() => {
+    dispatch(loadDrivers());
+  }, []);
 
   const isValid = (e) => {
     return clicked && watch([e])[e] === "";
@@ -43,7 +47,7 @@ const Listing = () => {
       <Header title="Drivers" />
 
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-5">
           <Portlet title="Add a Driver" icon={faIdCard}>
             <form onSubmit={handleSubmit(submit)}>
               <Input
@@ -75,9 +79,32 @@ const Listing = () => {
             </form>
           </Portlet>
         </div>
-        <div className="col-md-6">
+        <div className="col-md-7">
           <Portlet title="Lists" icon={faTable}>
-            table
+            {loading ? (
+              <FontAwesomeIcon icon={faSpinner} spin />
+            ) : (
+              <div
+                style={{ width: "100%", overflowY: "auto", overflowX: "auto" }}
+              >
+                <table className="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>License Number</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.map((q) => (
+                      <tr>
+                        <td>{q.fullName}</td>
+                        <td>{q.driversLicense}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </Portlet>
         </div>
       </div>

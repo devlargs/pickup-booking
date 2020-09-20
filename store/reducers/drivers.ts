@@ -3,7 +3,6 @@ import {
   createSelector,
   createAsyncThunk,
 } from "@reduxjs/toolkit";
-import { stat } from "fs";
 
 export const loadDrivers = createAsyncThunk(
   "drivers/load",
@@ -66,6 +65,7 @@ const driversSlice = createSlice({
       state.loading = true;
     },
     [loadDrivers.fulfilled as any]: (state: any, action) => {
+      console.log(action.payload);
       state.data = action.payload.data;
       state.loading = false;
     },
