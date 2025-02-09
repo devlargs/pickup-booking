@@ -76,7 +76,6 @@ const Jobs = () => {
       </div>
     `,
       allowOutsideClick: false,
-      // showCancelButton: true,
       showCloseButton: true,
       showConfirmButton: false,
       didOpen: () => {
@@ -86,7 +85,7 @@ const Jobs = () => {
         let selectedDriver = "";
 
         selectElement.addEventListener("change", (event) => {
-          selectedDriver = event.target.value;
+          selectedDriver = (event.target as any).value;
         });
 
         acceptButton.addEventListener("click", () => {

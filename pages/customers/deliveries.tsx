@@ -32,12 +32,14 @@ const Deliveries = () => {
     title?: string;
     icon?: string;
   }) => {
-    const bool = await swal({
+    const result = await Swal.fire({
       title,
-      icon,
+      showCancelButton: true,
+      confirmButtonText: "OK",
+      cancelButtonText: "Cancel",
     });
 
-    if (bool) {
+    if (result.isConfirmed) {
       dispatch(
         updateBooking({
           id,
