@@ -29,7 +29,7 @@ const Mainbar = () => {
             {currentUser === "drivers" && (
               <>
                 <li>
-                  <Link href="/drivers">
+                  <Link href="/drivers" legacyBehavior>
                     <a>
                       <i>
                         <FontAwesomeIcon icon={faPeopleCarry} />
@@ -39,7 +39,7 @@ const Mainbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/drivers/listing">
+                  <Link href="/drivers/listing" legacyBehavior>
                     <a>
                       <i>
                         <FontAwesomeIcon icon={faCar} />
@@ -53,7 +53,7 @@ const Mainbar = () => {
             {currentUser === "customers" && (
               <>
                 <li id="book-a-pick-up">
-                  <Link href="/customers">
+                  <Link href="/customers" legacyBehavior>
                     <a>
                       <i>
                         <FontAwesomeIcon icon={faPencilAlt} />
@@ -63,7 +63,7 @@ const Mainbar = () => {
                   </Link>
                 </li>
                 <li id="booking-list">
-                  <Link href="/customers/deliveries">
+                  <Link href="/customers/deliveries" legacyBehavior>
                     <a>
                       <>
                         <i>

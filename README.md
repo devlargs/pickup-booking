@@ -1,41 +1,52 @@
-# TypeScript Next.js example
+# 🚀 Pickup Booking Example
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+> **Note:** This project is an **example** of using **Redux Toolkit** with **Next.js** and **TypeScript**, integrating APIs with **Next.js API routes** and **Mongoose**.
 
-## Deploy your own
+## 📌 Installation Guide
 
-Deploy the example using [Vercel](https://vercel.com):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/next.js/tree/canary/examples/with-typescript)
-
-## How to use it?
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+### Clone the Repository
 
 ```bash
-npx create-next-app --example with-typescript with-typescript-app
-# or
-yarn create next-app --example with-typescript with-typescript-app
+git clone https://github.com/devlargs/pickup-booking.git
+cd pickup-booking
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/import?filter=next.js&utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+### Install Dependencies
 
-## Notes
+Ensure you have [Node.js](https://nodejs.org/) installed, then run:
 
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
-
-```
-npm install --save-dev typescript
+```bash
+npm install
 ```
 
-To enable TypeScript's features, we install the type declarations for React and Node.
+_Or with Yarn:_
+
+```bash
+yarn install
+```
+
+### Set Up Environment Variables
+
+Create a `.env.local` file in the root directory and configure your environment variables:
 
 ```
-npm install --save-dev @types/react @types/react-dom @types/node
+MONGODB_URI=your_mongodb_connection_string
 ```
 
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
+Replace `your_mongodb_connection_string` with your actual MongoDB connection string.
 
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
+### Run the Application
 
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+Start the development server:
+
+```bash
+npm run dev
+```
+
+_Or with Yarn:_
+
+```bash
+yarn dev
+```
+
+Visit [http://localhost:6969](http://localhost:6969) to access the application. 🚀
