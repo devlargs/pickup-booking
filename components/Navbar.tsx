@@ -43,7 +43,7 @@ const Navbar = (): ReactElement => {
               onClick={() => updateAuth("customers")}
               className={`${currentUser === "customers" && "active"}`}
             >
-              <Link href="/customers">
+              <Link href="/customers" legacyBehavior>
                 <a className="c-white">Customers</a>
               </Link>
             </li>
@@ -52,7 +52,7 @@ const Navbar = (): ReactElement => {
               onClick={() => updateAuth("drivers")}
               className={`${currentUser === "drivers" && "active"}`}
             >
-              <Link href="/drivers">
+              <Link href="/drivers" legacyBehavior>
                 <a className="c-white">Drivers</a>
               </Link>
             </li>
