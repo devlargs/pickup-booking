@@ -3,7 +3,7 @@ import {
   createAsyncThunk,
   createSelector,
 } from "@reduxjs/toolkit";
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 export const loadBooking = createAsyncThunk(
   "booking/load",
@@ -77,7 +77,13 @@ const bookingSlice = createSlice({
     [addBooking.fulfilled as any]: (state: any, action) => {
       state.data.push(action.payload.data);
       state.loading = false;
-      swal("Nice", "Successfully added booking", "success");
+      Swal.fire({
+        title: "Success!",
+        text: "Successfully added booking",
+        icon: "success",
+        confirmButtonColor: "#16A085",
+        confirmButtonText: "Close",
+      });
     },
     [addBooking.rejected as any]: (state: any, action) => {
       state.error = action.payload.error;

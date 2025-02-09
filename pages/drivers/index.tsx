@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import swal from "@sweetalert/with-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import Swal from "sweetalert2";
+import ReactDOMServer from "react-dom/server";
 
 let val = "";
 const Jobs = () => {
@@ -23,6 +25,36 @@ const Jobs = () => {
     dispatch(loadBooking());
     dispatch(loadDrivers());
   }, [loadBooking, dispatch, loadDrivers]);
+
+  const showShipmentDetails = (q) => {
+    const contentHtml = ReactDOMServer.renderToString(
+      <div style={{ textAlign: "left" }}>
+        <div>
+          <b>Shipper's Name:</b> {q.shippersName}
+        </div>
+        <div>Shipper's Address: {q.shippersAddress}</div>
+        <div>Shippers Contact Number: {q.shippersContactNumber}</div>
+        <hr />
+        <div>
+          <b>Receiver's Name:</b> {q.receiversName}
+        </div>
+        <div>Receiver's Contact Number: {q.receiversContactNumber}</div>
+        <div>Receiver's Address: {q.receiversAddress}</div>
+        <hr />
+        <div>Shipment Type: {q.shipmentType}</div>
+        <div>Mode of Service: {q.modeOfService}</div>
+        <div>Payment Mode: {q.paymentMode}</div>
+      </div>
+    );
+
+    Swal.fire({
+      title: "Shipment Details",
+      html: contentHtml,
+      showLoaderOnConfirm: true,
+      confirmButtonColor: "#16A085",
+      confirmButtonText: "Close",
+    });
+  };
 
   return (
     <Container>
@@ -56,38 +88,7 @@ const Jobs = () => {
                     <button
                       type="button"
                       className="btn btn-info btn-xs  mr-10 mb-3"
-                      onClick={() =>
-                        swal({
-                          content: (
-                            <div style={{ textAlign: "left" }}>
-                              <div>
-                                <b>Shipper's Name</b>: {q.shippersName}
-                              </div>
-                              <div>Shipper's Address: {q.shippersAddress}</div>
-                              <div>
-                                Shippers Contact Number:{" "}
-                                {q.shippersContactNumber}
-                              </div>
-                              <hr />
-                              <div>
-                                <b>Receiver's Name</b>: {q.receiversName}
-                              </div>
-                              <div>
-                                Receiver's Contact Number:{" "}
-                                {q.receiversContactNumber}
-                              </div>
-                              <div>
-                                Receiver's Address: {q.receiversAddress}
-                              </div>
-                              <hr />
-                              <div>Shipment Type: {q.shipmentType}</div>
-                              <div>Mode of Service: {q.modeOfService}</div>
-                              <div>Payment Mode: {q.paymentMode}</div>
-                            </div>
-                          ),
-                          buttons: {},
-                        })
-                      }
+                      onClick={() => showShipmentDetails(q)}
                     >
                       View
                     </button>
@@ -102,7 +103,6 @@ const Jobs = () => {
                               <p>Please select driver to accept the job</p>
                               <select
                                 defaultValue=""
-                                placeholder="Please select driver"
                                 style={{ padding: 10, width: "100%" }}
                                 onChange={(e) => {
                                   val = e.target.value;
