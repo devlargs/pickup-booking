@@ -12,16 +12,12 @@ import casual from "casual-browserify";
 
 const App = () => {
   const dispatch = useDispatch();
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    setValue,
-    reset,
-    watch,
-  } = useForm();
+  const { register, handleSubmit, getValues, setValue, reset, watch } =
+    useForm();
   const [clicked, setClicked] = useState(false);
   const { loading } = useSelector(selectBookings);
+
+  console.log(loading);
 
   const isValid = (e) => {
     return clicked && watch([e])[e] === "";
