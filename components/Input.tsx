@@ -1,4 +1,4 @@
-import camelToSentenceCase from "utils/camelToSentenceCase";
+import { camelToSentenceCase } from "largs-utils";
 
 type Props = {
   error?: boolean;

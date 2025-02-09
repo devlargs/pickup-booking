@@ -17,8 +17,6 @@ const App = () => {
   const [clicked, setClicked] = useState(false);
   const { loading } = useSelector(selectBookings);
 
-  console.log(loading);
-
   const isValid = (e) => {
     return clicked && watch([e])[e] === "";
   };
